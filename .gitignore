@@ -1,0 +1,19 @@
+# Virtual environment
+.venv/
+venv/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Streamlit secrets (never commit passwords or keys)
+.streamlit/secrets.toml
+
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

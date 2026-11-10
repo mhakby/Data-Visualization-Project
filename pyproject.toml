@@ -1,0 +1,13 @@
+# Settings for our development tools (pytest and ruff).
+# This is not a package definition; dependencies live in requirements.txt.
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+# E/W: style errors, F: real bugs (unused imports, undefined names), I: import order
+select = ["E", "W", "F", "I"]

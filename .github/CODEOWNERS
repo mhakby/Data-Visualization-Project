@@ -1,0 +1,10 @@
+# Code owners are added as reviewers automatically when a pull request
+# changes their files. The last matching line wins.
+
+# Shared code, docs and settings: owned by the whole team
+*                       @mhakby @ReshadVerse @sefakeskin
+
+# Member folders: the member owns the folder, the other two review
+/members/mhakby/        @mhakby @ReshadVerse @sefakeskin
+/members/reshadverse/   @ReshadVerse @mhakby @sefakeskin
+/members/sefakeskin/    @sefakeskin @mhakby @ReshadVerse
