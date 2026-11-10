@@ -1,0 +1,10 @@
+# Code owners are added as reviewers automatically when a pull request
+# changes their files. The last matching line wins.
+
+# Shared code, docs and settings
+*                       @mhakby
+
+# Member folders
+/members/mhakby/        @mhakby
+/members/reshadverse/   @ReshadVerse @mhakby
+/members/sefakeskin/    @sefakeskin @mhakby
