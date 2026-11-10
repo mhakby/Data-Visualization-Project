@@ -4,13 +4,14 @@
 
 | Area | Owner | Notes |
 |------|-------|-------|
-| `app.py`, `dashboard/`, `scripts/`, `tests/`, `.github/` | @mhakby | Shared code. Need a change? Open an issue. |
+| `app.py`, `dashboard/`, `scripts/`, `tests/`, `.github/`, docs | Whole team | Shared code. Changes are agreed in an issue first. |
 | `members/mhakby/` | @mhakby | |
 | `members/reshadverse/` | @ReshadVerse | |
 | `members/sefakeskin/` | @sefakeskin | |
 
-**Only edit files inside your own folder.** If you need something in the shared code
-(a new column, a fix in the cleaning step, a new color), open an issue and assign @mhakby.
+**In your chart work, only edit files inside your own folder.** If you need something in the
+shared code (a new column, a fix in the cleaning step, a new color), open an issue first so the
+team can agree on it, then make the change in a separate pull request.
 
 ## Workflow
 
