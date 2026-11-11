@@ -9,6 +9,6 @@ To add a chart:
 # from members.reshadverse import chart_sankey
 # CHARTS = [chart_sankey]
 
-TAB_TITLE = "ReshadVerse"  # TODO: change to your topic, e.g. "Flows & Relationships"
+TAB_TITLE = "Flows & Profitability"
 
 CHARTS = []

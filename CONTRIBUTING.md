@@ -46,7 +46,7 @@ Never push directly to `main`.
    ```python
    from members.reshadverse import chart_sankey
 
-   TAB_TITLE = "Flows & Relationships"
+   TAB_TITLE = "Flows & Profitability"
    CHARTS = [chart_sankey]
    ```
 4. Run the app. Your chart appears in your tab.
