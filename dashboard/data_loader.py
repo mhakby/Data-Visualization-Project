@@ -17,7 +17,7 @@ def load_data():
     df = pd.read_csv(config.PROCESSED_DATA_FILE)
 
     # CSV files store dates as text, so we convert them back to datetime.
-    if config.DATE_COLUMN:
-        df[config.DATE_COLUMN] = pd.to_datetime(df[config.DATE_COLUMN])
+    for column in config.DATE_COLUMNS:
+        df[column] = pd.to_datetime(df[column])
 
     return df

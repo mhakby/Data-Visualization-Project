@@ -1,10 +1,12 @@
-"""Data cleaning helpers.
+"""Data cleaning for the Global Superstore dataset.
 
-The general helpers (missing values, duplicates, outliers) work with any dataset.
-`clean_data` holds the dataset-specific steps and is completed after the dataset decision.
+`clean_data` runs all steps in order. Each step is a small function,
+so it is easy to test and to explain in the report.
 """
 
 import pandas as pd
+
+# --- General helpers --------------------------------------------------------
 
 
 def missing_value_report(df):
@@ -29,21 +31,70 @@ def find_outliers_iqr(series):
     return (series < lower_limit) | (series > upper_limit)
 
 
+# --- Cleaning steps ---------------------------------------------------------
+
+
 def clean_column_names(df):
-    """Make column names easier to use: no extra spaces, e.g. ' Sales ' -> 'Sales'."""
+    """Remove extra spaces from column names, e.g. ' Sales ' -> 'Sales'."""
     df = df.copy()
     df.columns = df.columns.str.strip()
+    return df
+
+
+def strip_text_values(df):
+    """Remove extra spaces at the start and end of text values."""
+    df = df.copy()
+    for column in df.columns:
+        if pd.api.types.is_string_dtype(df[column]):
+            df[column] = df[column].str.strip()
+    return df
+
+
+def drop_unused_columns(df):
+    """Drop columns we do not use.
+
+    - Row ID: only a row number, it carries no information.
+    - Postal Code: about 80% missing, because only US orders have one.
+    """
+    return df.drop(columns=["Row ID", "Postal Code"])
+
+
+def convert_dates(df):
+    """Convert date text like '31-07-2012' (day-month-year) to datetime."""
+    df = df.copy()
+    df["Order Date"] = pd.to_datetime(df["Order Date"], format="%d-%m-%Y")
+    df["Ship Date"] = pd.to_datetime(df["Ship Date"], format="%d-%m-%Y")
+    return df
+
+
+def remove_invalid_rows(df):
+    """Remove rows that cannot be correct: shipped before ordered, or zero/negative sales."""
+    shipped_before_ordered = df["Ship Date"] < df["Order Date"]
+    no_sales = df["Sales"] <= 0
+    return df[~shipped_before_ordered & ~no_sales]
+
+
+def add_new_columns(df):
+    """Add columns that several charts need."""
+    df = df.copy()
+    df["Year"] = df["Order Date"].dt.year
+    df["Month"] = df["Order Date"].dt.month
+    df["Shipping Days"] = (df["Ship Date"] - df["Order Date"]).dt.days
+    df["Profit Margin"] = (df["Profit"] / df["Sales"]).round(4)
     return df
 
 
 def clean_data(df):
     """Run all cleaning steps and return the cleaned DataFrame."""
     df = clean_column_names(df)
+    df = strip_text_values(df)
     df = df.drop_duplicates()
+    df = drop_unused_columns(df)
+    df = convert_dates(df)
+    df = remove_invalid_rows(df)
+    df = add_new_columns(df)
 
-    # TODO (after dataset decision): add dataset-specific steps here, for example
-    # - fill or drop missing values
-    # - fix data types (dates, categories)
-    # - create new columns (year, month, profit margin, ...)
+    # Outliers are NOT removed: large orders and big losses are real sales, not errors.
+    # The sidebar has a checkbox to hide Sales outliers when needed.
 
-    return df
+    return df.reset_index(drop=True)
