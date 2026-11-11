@@ -24,9 +24,9 @@ def sidebar_filters(df):
         filtered = filtered[filtered[column].isin(selected)]
 
     # 2) Date range slider.
-    if config.DATE_COLUMN:
-        min_date = df[config.DATE_COLUMN].min().date()
-        max_date = df[config.DATE_COLUMN].max().date()
+    if config.DATE_FILTER_COLUMN:
+        min_date = df[config.DATE_FILTER_COLUMN].min().date()
+        max_date = df[config.DATE_FILTER_COLUMN].max().date()
         start_date, end_date = st.sidebar.slider(
             "Date range",
             min_value=min_date,
@@ -34,7 +34,7 @@ def sidebar_filters(df):
             value=(min_date, max_date),
             key="filter_date_range",
         )
-        dates = filtered[config.DATE_COLUMN].dt.date
+        dates = filtered[config.DATE_FILTER_COLUMN].dt.date
         filtered = filtered[(dates >= start_date) & (dates <= end_date)]
 
     # 3) Checkbox to hide outliers.

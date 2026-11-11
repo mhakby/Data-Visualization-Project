@@ -7,7 +7,9 @@ Run from the project root folder:
 import pandas as pd
 
 from dashboard import config
-from dashboard.preprocessing import clean_data, missing_value_report
+from dashboard.preprocessing import clean_data, find_outliers_iqr, missing_value_report
+
+NUMERIC_COLUMNS = ["Sales", "Quantity", "Discount", "Profit", "Shipping Cost"]
 
 
 def main():
@@ -16,10 +18,18 @@ def main():
         print("Download the dataset and put it in the data/raw/ folder first.")
         return
 
-    raw_df = pd.read_csv(config.RAW_DATA_FILE)
+    raw_df = pd.read_csv(config.RAW_DATA_FILE, encoding=config.RAW_DATA_ENCODING)
     print(f"Raw data: {raw_df.shape[0]:,} rows, {raw_df.shape[1]} columns")
+    print(f"Duplicate rows: {raw_df.duplicated().sum()}")
+
     print("\nMissing values before cleaning:")
-    print(missing_value_report(raw_df).head(10))
+    report = missing_value_report(raw_df)
+    print(report[report["missing"] > 0])
+
+    print("\nOutliers (1.5 * IQR rule):")
+    for column in NUMERIC_COLUMNS:
+        count = find_outliers_iqr(raw_df[column]).sum()
+        print(f"  {column}: {count:,} rows ({count / len(raw_df):.1%})")
 
     clean_df = clean_data(raw_df)
     print(f"\nClean data: {clean_df.shape[0]:,} rows, {clean_df.shape[1]} columns")

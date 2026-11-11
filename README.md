@@ -7,16 +7,15 @@ CEN445 Introduction to Data Visualization - Team Project (2026-2027)
 
 ## Dataset
 
-> **TODO:** to be filled in after the team decision (see the `decision` issue).
-
 | | |
 |---|---|
-| **Name** | - |
-| **Source** | - (link) |
-| **Size** | - rows, - columns |
-| **Description** | - |
+| **Name** | Global Superstore |
+| **Source** | [Kaggle - Global Super Store Dataset](https://www.kaggle.com/datasets/apoorvaappz/global-super-store-dataset) |
+| **Size** | 51,290 rows, 24 columns (raw) -> 26 columns after cleaning |
+| **Description** | Orders of a global online store from 2011 to 2014: dates, customers, countries, markets, product categories, sales, discount, profit and shipping cost |
 
 The raw file is stored in `data/raw/` and the cleaned file in `data/processed/`.
+See [data/README.md](data/README.md) for the cleaning steps and the list of columns.
 
 ## Project Structure
 
@@ -74,19 +73,19 @@ pytest
 
 ## Visualizations
 
-> **TODO:** fill in as charts are added.
+> **TODO:** write the insight of each chart when it is finished.
 
 | # | Chart | Type | Insight | Author |
 |---|-------|------|---------|--------|
-| 1 | | | | |
-| 2 | | | | |
-| 3 | | | | |
-| 4 | | | | |
-| 5 | | | | |
-| 6 | | | | |
-| 7 | | | | |
-| 8 | | | | |
-| 9 | | | | |
+| A1 | Customer segments | K-Means clustering (advanced, ML) | | @mhakby |
+| A2 | Products bought together | Network diagram (advanced) | | @mhakby |
+| A3 | Top / bottom products | Bar chart | | @mhakby |
+| B1 | Sales flow | Sankey diagram (advanced) | | @ReshadVerse |
+| B2 | Discount, quantity, shipping cost and profit | Parallel coordinates (advanced) | | @ReshadVerse |
+| B3 | Profit by sub-category and market | Heatmap | | @ReshadVerse |
+| C1 | Profit by country | Choropleth map (advanced) | | @sefakeskin |
+| C2 | Markets over the years | Animated bubble chart (advanced) | | @sefakeskin |
+| C3 | Sales trend and forecast | Time series + linear regression (ML) | | @sefakeskin |
 
 ## Team and Contributions
 

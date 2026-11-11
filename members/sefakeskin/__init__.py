@@ -6,9 +6,9 @@ To add a chart:
 """
 
 # Example:
-# from members.sefakeskin import chart_clusters
-# CHARTS = [chart_clusters]
+# from members.sefakeskin import chart_world_map
+# CHARTS = [chart_world_map]
 
-TAB_TITLE = "sefakeskin"  # TODO: change to your topic, e.g. "Machine Learning & Networks"
+TAB_TITLE = "Geography & Time"
 
 CHARTS = []

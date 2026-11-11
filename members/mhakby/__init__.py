@@ -6,9 +6,9 @@ To add a chart:
 """
 
 # Example:
-# from members.mhakby import chart_world_map
-# CHARTS = [chart_world_map]
+# from members.mhakby import chart_customer_segments
+# CHARTS = [chart_customer_segments]
 
-TAB_TITLE = "mhakby"  # TODO: change to your topic, e.g. "Geography & Trends"
+TAB_TITLE = "Customers & Products"
 
 CHARTS = []
