@@ -5,10 +5,8 @@ To add a chart:
 2. Import it below and add it to the CHARTS list.
 """
 
-# Example:
-# from members.sefakeskin import chart_world_map
-# CHARTS = [chart_world_map]
+from members.sefakeskin import chart_market_bubbles, chart_sales_forecast, chart_world_map
 
 TAB_TITLE = "Geography & Time"
 
-CHARTS = []
+CHARTS = [chart_world_map, chart_market_bubbles, chart_sales_forecast]

@@ -27,11 +27,15 @@ def apply_theme():
 
 
 def style_figure(fig, height=CHART_HEIGHT):
-    """Give a Plotly figure the same size, margins and legend position as the others."""
+    """Give a Plotly figure the same size and margins as the others.
+
+    The legend is placed on the right side, so it never covers the title.
+    (Streamlit would otherwise move it to the top, next to the title.)
+    """
     fig.update_layout(
         height=height,
         margin=dict(l=20, r=20, t=60, b=20),
         title_x=0.0,
-        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+        legend=dict(orientation="v", x=1.02, xanchor="left", y=1, yanchor="top"),
     )
     return fig
