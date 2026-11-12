@@ -8,7 +8,7 @@ Use this file to collect material for the report and the presentation.
 |---|-------|------|---------------------|---------------|
 | A1 | Customer segments | K-Means clustering scatter (ML) | Which customer groups exist, and how do they differ? | k slider, hover, zoom, legend click, sidebar filters |
 | A2 | Sub-categories bought together | Network diagram | Which sub-categories are bought together in the same order? | slider for number of links, hover on nodes and links, zoom, pan, legend click, sidebar filters |
-| A3 |       |      |                     |               |
+| A3 | Top / bottom products | Horizontal bar chart | Which products bring the most profit and which lose the most money? | radio (top / bottom), number slider, color dropdown, hover, zoom, sidebar filters |
 
 ## Key findings
 
@@ -35,6 +35,18 @@ Use this file to collect material for the report and the presentation.
 - All 136 possible pairs of the 17 sub-categories appear at least 38 times, so we only show
   the strongest links.
 
+**A3 - Top / bottom products (all data)**
+
+- 678 of 3,788 products (18%) lose money in total, about 248,000 USD together
+  (total profit of the store: about 1.47 million USD).
+- Biggest losses: Cubify CubeX 3D Printer Double Head Print (-8,880 USD), Lexmark MX611dhe
+  Monochrome Laser Printer (-4,590), Motorola Smart Phone, Cordless (-4,447). 5 of the
+  bottom 10 are furniture, mostly tables.
+- Most profitable: Canon imageCLASS 2200 Advanced Copier (+25,200 USD), then Cisco and
+  Motorola smart phones. 7 of the top 10 are technology products.
+- Average discount: 37% for the bottom 10, 12% for the top 10 (14% for all orders).
+  This matches A1: high discounts turn sales into losses.
+
 ## Design choices (colors, chart type, why)
 
 **A1**
@@ -52,6 +64,14 @@ Use this file to collect material for the report and the presentation.
   (`spring_layout` with the pair count as weight).
 - Invisible points in the middle of each line make the line value visible on hover.
 
+**A3**
+
+- Horizontal bars, because product names are long and are easier to read on the y axis.
+- Two color options: by category (same colors as the A2 network) or by average discount,
+  which shows directly why the biggest losers lose money.
+- Two numbers above the chart (loss-making products and their total loss) give context and
+  change with the sidebar filters.
+
 ## Problems I faced and how I solved them
 
 **A1**
@@ -67,3 +87,10 @@ Use this file to collect material for the report and the presentation.
   Fixed with a slider that shows only the strongest N links.
 - Counting pairs takes about 1 second, which made every click slow. Fixed with
   `st.cache_data`, so it is calculated once per filter selection.
+
+**A3**
+
+- Some product names are longer than 100 characters and squeezed the bars. The axis now
+  shows names cut to 40 characters; the full name is in the hover tooltip.
+- Two long names could become the same after cutting and share one bar. Fixed by using the
+  full names as the axis values and only showing the short names as labels.
