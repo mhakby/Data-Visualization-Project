@@ -5,10 +5,8 @@ To add a chart:
 2. Import it below and add it to the CHARTS list.
 """
 
-# Example:
-# from members.mhakby import chart_customer_segments
-# CHARTS = [chart_customer_segments]
+from members.mhakby import chart_customer_segments
 
 TAB_TITLE = "Customers & Products"
 
-CHARTS = []
+CHARTS = [chart_customer_segments]
