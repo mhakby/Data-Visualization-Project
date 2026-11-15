@@ -5,6 +5,10 @@ through 9 interactive visualizations and 2 machine learning models.
 
 CEN445 Introduction to Data Visualization - Team Project (2026-2027)
 
+**Team:** Mehmet Hadi Akbey, Reshad Aliyev, Sefa Keskin
+
+**One-page report:** [reports/CEN445_Team_Report.pdf](reports/CEN445_Team_Report.pdf)
+
 ## Dataset
 
 | | |
@@ -73,27 +77,32 @@ pytest
 
 ## Visualizations
 
-> **TODO:** write the insight of each chart when it is finished.
+The dashboard has an **Overview** tab (dataset size, preview, column summary) and one tab per
+member with three charts each. All charts react to the sidebar filters (market, category,
+segment, date range, hide Sales outliers). Insights below are for the full dataset.
 
 | # | Chart | Type | Insight | Author |
 |---|-------|------|---------|--------|
-| A1 | Customer segments | K-Means clustering (advanced, ML) | | @mhakby |
-| A2 | Products bought together | Network diagram (advanced) | | @mhakby |
-| A3 | Top / bottom products | Bar chart | | @mhakby |
-| B1 | Sales flow | Sankey diagram (advanced) | | @ReshadVerse |
-| B2 | Discount, quantity, shipping cost and profit | Parallel coordinates (advanced) | | @ReshadVerse |
-| B3 | Profit by sub-category and market | Heatmap | | @ReshadVerse |
-| C1 | Profit by country | Choropleth map (advanced) | | @sefakeskin |
-| C2 | Markets over the years | Animated bubble chart (advanced) | | @sefakeskin |
-| C3 | Sales trend and forecast | Time series + linear regression (ML) | | @sefakeskin |
+| A1 | Customer segments | K-Means clustering (advanced, **ML**) | With k = 4, about 20% of customers get ~32% average discount and lose money overall, while the top 15% bring the highest profit per customer. | Mehmet Hadi Akbey |
+| A2 | Sub-categories bought together | Network diagram (advanced) | 49% of orders contain more than one sub-category; Binders + Storage (944 orders) is the most common pair and Binders links to almost everything. | Mehmet Hadi Akbey |
+| A3 | Most profitable products and biggest losses | Bar chart | 678 of 3,788 products (18%) lose about 248k USD in total; the 10 biggest losers get 37% average discount vs. 12% for the 10 most profitable. | Mehmet Hadi Akbey |
+| B1 | Sales flow | Sankey diagram (advanced) | Consumers bring 51.5% of sales; Technology earns the most money, but Office Supplies is 60.6% of all items sold. | Reshad Aliyev |
+| B2 | Discount, quantity, shipping cost and profit | Parallel coordinates (advanced) | Orders with more than 20% discount almost always lose money (average margin -40.8%), regardless of quantity or shipping cost. | Reshad Aliyev |
+| B3 | Profit by sub-category and market | Heatmap | Tables lose money in 5 of 7 markets (-64k USD in total), while Copiers, Phones and Bookcases make the highest profit. | Reshad Aliyev |
+| C1 | Profit by country | Choropleth map (advanced) | The US, China and India make the most profit; Turkey, Nigeria and the Netherlands lose the most; 29 of 147 countries make a loss. | Sefa Keskin |
+| C2 | Markets over the years | Animated bubble chart (advanced) | Every market grew from 2011 to 2014; APAC and the EU lead, while EMEA has the thinnest profit margin (under 8%). | Sefa Keskin |
+| C3 | Sales trend and forecast | Time series + linear regression (**ML**) | Sales grow by about 5,900 USD per month, but the straight line (R² ≈ 0.52) misses the strong yearly seasonality (December ≈ 3 × February). | Sefa Keskin |
+
+**Main finding across charts:** high discounts are the main reason for losses. The same pattern
+appears for customers (A1), products (A3, B3) and single orders (B2).
 
 ## Team and Contributions
 
 | Member | GitHub | Contributions |
 |--------|--------|---------------|
-| | [@mhakby](https://github.com/mhakby) | Shared work (see below), charts 1-3 |
-| | [@ReshadVerse](https://github.com/ReshadVerse) | Shared work (see below), charts 4-6 |
-| | [@sefakeskin](https://github.com/sefakeskin) | Shared work (see below), charts 7-9 |
+| Mehmet Hadi Akbey | [@mhakby](https://github.com/mhakby) | Shared work (see below); charts A1 (K-Means customer segments), A2 (network), A3 (top / bottom products) |
+| Reshad Aliyev | [@ReshadVerse](https://github.com/ReshadVerse) | Shared work (see below); charts B1 (Sankey), B2 (parallel coordinates), B3 (heatmap) |
+| Sefa Keskin | [@sefakeskin](https://github.com/sefakeskin) | Shared work (see below); charts C1 (world map), C2 (animated bubbles), C3 (sales forecast with linear regression) |
 
 **Shared work:** the dataset choice, project structure, shared code (`dashboard/`, `app.py`),
 data preprocessing, tests and CI, the report and this documentation were planned, built and
