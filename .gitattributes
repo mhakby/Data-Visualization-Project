@@ -1,0 +1,4 @@
+# Never change line endings in these files (they are not plain text).
+*.pdf binary
+*.png binary
+*.xlsx binary
